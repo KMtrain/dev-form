@@ -1,0 +1,56 @@
+<h1 id="form-questionnaire-header">Dev's questionnaire</h1>
+<form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+    <div id="form-name">
+        <label for="first-name">First Name: </label>
+        <input id="first-name" type="text" formControlName="firstName">
+    </div>
+    <br>
+    <div id="form-last-name">
+        <label for="last-name">Last Name: </label>
+        <input id="last-name" type="text" formControlName="lastName">
+    </div>
+    <br>
+    <div id="form-date">
+        <input matInput [matDatepicker]="dateOfBirth" formControlName="dateOfBirth">
+        <mat-datepicker-toggle matSuffix [for]="dateOfBirth"></mat-datepicker-toggle>
+        <mat-datepicker #dateOfBirth></mat-datepicker>
+    </div>
+    <br>
+    <span>Select framework:</span>
+    <div id="form-framework-select">
+        <select formControlName="framework" (change)="updateFrameworkSelection($event.target)">
+            <option selected disabled>Select Framework</option>
+            <option *ngFor="let framework of frameworks" [value]="framework">{{framework}}</option>
+        </select>
+    </div>
+    <br>
+    <span>Select framework version:</span>
+    <div id="form-framework-version">
+        <select formControlName="frameworkVersion">
+            <option selected disabled>framework version</option>
+            <option *ngFor="let frameworkversion of frameworkversions" [value]="frameworkversion">{{frameworkversion}}
+            </option>
+        </select>
+    </div>
+    <br>
+    <div id="form-email">
+        <label for="e-mail">Email: </label>
+        <input id="e-mail" type="text" formControlName="email">
+    </div>
+    <br>
+    <div id="form-hobby" formArrayName="hobby">
+
+    </div>
+    <br>
+ <!--  <ul formArrayName="hobby">
+        <li *ngFor="let hobby of profileForm.controls.hobby.controls let i = index">
+            <input formControlName="{{i}}">
+        </li> 
+    </ul> --> 
+    <br>
+    <div id="form-submit">
+        <p>Complete the form to enable button.</p>
+        <button type="submit" [disabled]="!profileForm.valid">Submit</button>
+    </div>
+
+</form>
